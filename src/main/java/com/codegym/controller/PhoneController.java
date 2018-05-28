@@ -13,7 +13,7 @@ import com.codegym.model.PhoneNumber;
 import javax.validation.Valid;
 
 @Controller
-public class FormController {
+public class PhoneController {
 
 
     @GetMapping("/")
