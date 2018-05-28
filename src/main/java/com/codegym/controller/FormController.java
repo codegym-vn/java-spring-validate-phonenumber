@@ -1,5 +1,6 @@
 package com.codegym.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -13,6 +14,8 @@ import javax.validation.Valid;
 
 @Controller
 public class FormController {
+
+
     @GetMapping("/")
     public String showForm(Model model){
         model.addAttribute("phonemunber", new PhoneNumber());
@@ -20,6 +23,7 @@ public class FormController {
     }
     @PostMapping("/")
     public String checkValidation (@Valid @ModelAttribute("phonemunber")PhoneNumber phoneNumber, BindingResult bindingResult, Model model){
+        new PhoneNumber().validate(phoneNumber, bindingResult);
         if (bindingResult.hasFieldErrors()){
             return "index";
         }
@@ -27,6 +31,7 @@ public class FormController {
             model.addAttribute("phoneNumber", phoneNumber.getNumber());
             return "result";
         }
+
     }
 
 }
